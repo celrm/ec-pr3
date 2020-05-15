@@ -1,0 +1,213 @@
+21:05:51 **** Build of configuration Debug for project p3 ****
+cs-make all 
+'Building file: ../D8Led.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="D8Led.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"D8Led.d" -MT"D8Led.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "D8Led.o" "../D8Led.c"
+../D8Led.c: In function 'D8Led_segment':
+../D8Led.c:75:1: error: expected expression before '}' token
+../D8Led.c: In function 'D8Led_digit':
+../D8Led.c:81:1: error: expected expression before '}' token
+../D8Led.c: At top level:
+../D8Led.c:58:21: warning: 'Segments' defined but not used
+../D8Led.c:61:21: warning: 'Digits' defined but not used
+cs-make: *** [D8Led.o] Error 1
+21:08:04 **** Incremental Build of configuration Debug for project p3 ****
+cs-make all 
+'Building file: ../D8Led.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="D8Led.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"D8Led.d" -MT"D8Led.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "D8Led.o" "../D8Led.c"
+../D8Led.c:58:21: warning: 'Segments' defined but not used
+../D8Led.c:61:21: warning: 'Digits' defined but not used
+'Finished building: ../D8Led.c'
+' '
+'Building file: ../button.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="button.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"button.d" -MT"button.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "button.o" "../button.c"
+../button.c: In function 'read_button':
+../button.c:27:15: warning: unused variable 'val'
+'Finished building: ../button.c'
+' '
+'Building file: ../gpio.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="gpio.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"gpio.d" -MT"gpio.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "gpio.o" "../gpio.c"
+../gpio.c: In function 'portB_conf':
+../gpio.c:14:2: error: expected expression before 'else'
+../gpio.c: In function 'portB_write':
+../gpio.c:32:2: error: expected expression before 'else'
+../gpio.c: In function 'portG_conf':
+../gpio.c:42:6: warning: unused variable 'pos'
+../gpio.c: In function 'portG_eint_trig':
+../gpio.c:69:6: warning: unused variable 'pos'
+../gpio.c: In function 'portG_write':
+../gpio.c:119:2: error: expected expression before 'else'
+../gpio.c: In function 'portG_read':
+../gpio.c:137:2: error: expected expression before 'else'
+../gpio.c: In function 'portG_conf_pup':
+../gpio.c:153:2: error: expected expression before 'else'
+../gpio.c:157:1: warning: control reaches end of non-void function
+../gpio.c: In function 'portG_read':
+../gpio.c:141:1: warning: control reaches end of non-void function
+../gpio.c: In function 'portG_write':
+../gpio.c:123:1: warning: control reaches end of non-void function
+../gpio.c: In function 'portB_write':
+../gpio.c:36:1: warning: control reaches end of non-void function
+cs-make: *** [gpio.o] Error 1
+21:09:49 **** Incremental Build of configuration Debug for project p3 ****
+cs-make all 
+'Building file: ../gpio.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="gpio.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"gpio.d" -MT"gpio.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "gpio.o" "../gpio.c"
+../gpio.c: In function 'portG_conf':
+../gpio.c:42:6: warning: unused variable 'pos'
+../gpio.c: In function 'portG_eint_trig':
+../gpio.c:69:6: warning: unused variable 'pos'
+'Finished building: ../gpio.c'
+' '
+'Building file: ../init.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="init.o.lst" -c -fmessage-length=0 -MMD -MP -MF"init.d" -MT"init.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "init.o" "../init.S"
+'Finished building: ../init.S'
+' '
+'Building file: ../intcontroller.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="intcontroller.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"intcontroller.d" -MT"intcontroller.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "intcontroller.o" "../intcontroller.c"
+../intcontroller.c: In function 'ic_conf_irq':
+../intcontroller.c:42:2: error: expected expression before 'else'
+../intcontroller.c:34:6: warning: unused variable 'conf'
+../intcontroller.c: In function 'ic_conf_fiq':
+../intcontroller.c:60:2: error: expected expression before 'else'
+../intcontroller.c: In function 'ic_conf_line':
+../intcontroller.c:80:2: error: expected expression before 'else'
+../intcontroller.c:70:15: warning: unused variable 'bit'
+../intcontroller.c: In function 'ic_cleanflag':
+../intcontroller.c:118:2: error: expected expression before 'else'
+../intcontroller.c:122:1: warning: control reaches end of non-void function
+../intcontroller.c: In function 'ic_conf_line':
+../intcontroller.c:84:1: warning: control reaches end of non-void function
+cs-make: *** [intcontroller.o] Error 1
+21:10:08 **** Incremental Build of configuration Debug for project p3 ****
+cs-make all 
+'Building file: ../intcontroller.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="intcontroller.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"intcontroller.d" -MT"intcontroller.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "intcontroller.o" "../intcontroller.c"
+../intcontroller.c: In function 'ic_conf_irq':
+../intcontroller.c:47:2: error: expected expression before 'else'
+../intcontroller.c:34:6: warning: unused variable 'conf'
+../intcontroller.c: In function 'ic_conf_fiq':
+../intcontroller.c:60:2: error: expected expression before 'else'
+../intcontroller.c: In function 'ic_conf_line':
+../intcontroller.c:80:2: error: expected expression before 'else'
+../intcontroller.c:70:15: warning: unused variable 'bit'
+../intcontroller.c: In function 'ic_cleanflag':
+../intcontroller.c:118:2: error: expected expression before 'else'
+../intcontroller.c:122:1: warning: control reaches end of non-void function
+../intcontroller.c: In function 'ic_conf_line':
+../intcontroller.c:84:1: warning: control reaches end of non-void function
+cs-make: *** [intcontroller.o] Error 1
+21:10:55 **** Incremental Build of configuration Debug for project p3 ****
+cs-make all 
+'Building file: ../intcontroller.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="intcontroller.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"intcontroller.d" -MT"intcontroller.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "intcontroller.o" "../intcontroller.c"
+../intcontroller.c: In function 'ic_conf_line':
+../intcontroller.c:70:15: warning: unused variable 'bit'
+'Finished building: ../intcontroller.c'
+' '
+'Building file: ../keyboard.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="keyboard.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"keyboard.d" -MT"keyboard.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "keyboard.o" "../keyboard.c"
+../keyboard.c: In function 'kb_scan':
+../keyboard.c:25:6: warning: unused variable 'map'
+'Finished building: ../keyboard.c'
+' '
+'Building file: ../leds.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="leds.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"leds.d" -MT"leds.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "leds.o" "../leds.c"
+../leds.c: In function 'leds_display':
+../leds.c:94:1: error: expected expression before '}' token
+cs-make: *** [leds.o] Error 1
+21:11:22 **** Incremental Build of configuration Debug for project p3 ****
+cs-make all 
+'Building file: ../leds.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="leds.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"leds.d" -MT"leds.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "leds.o" "../leds.c"
+'Finished building: ../leds.c'
+' '
+'Building file: ../main.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="main.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"main.d" -MT"main.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "main.o" "../main.c"
+../main.c: In function 'button_ISR':
+../main.c:51:1: error: expected expression before '}' token
+../main.c:40:15: warning: unused variable 'buttons'
+../main.c: At top level:
+../main.c:52:1: error: expected identifier or '(' before '}' token
+../main.c: In function 'keyboard_ISR':
+../main.c:87:82: error: expected expression before ')' token
+../main.c: In function 'setup':
+../main.c:127:16: error: void value not ignored as it ought to be
+cs-make: *** [main.o] Error 1
+21:13:32 **** Incremental Build of configuration Debug for project p3 ****
+cs-make all 
+'Building file: ../main.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="main.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"main.d" -MT"main.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "main.o" "../main.c"
+../main.c: In function 'button_ISR':
+../main.c:40:15: warning: unused variable 'buttons'
+'Finished building: ../main.c'
+' '
+'Building file: ../timer.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="timer.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"timer.d" -MT"timer.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "timer.o" "../timer.c"
+../timer.c: In function 'tmr_set_prescaler':
+../timer.c:12:6: warning: unused variable 'offset'
+../timer.c: In function 'tmr_set_divider':
+../timer.c:29:2: error: expected ',' or ';' before 'if'
+../timer.c:27:6: warning: unused variable 'pos'
+../timer.c:26:6: warning: unused variable 'ret'
+../timer.c: In function 'tmr_set_mode':
+../timer.c:113:2: error: expected expression before 'else'
+cs-make: *** [timer.o] Error 1
+21:15:43 **** Incremental Build of configuration Debug for project p3 ****
+cs-make all 
+'Building file: ../timer.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="timer.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"timer.d" -MT"timer.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "timer.o" "../timer.c"
+../timer.c: In function 'tmr_set_prescaler':
+../timer.c:12:6: warning: unused variable 'offset'
+../timer.c: In function 'tmr_set_divider':
+../timer.c:27:6: warning: unused variable 'pos'
+../timer.c:26:6: warning: unused variable 'ret'
+'Finished building: ../timer.c'
+' '
+'Building file: ../utils.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="utils.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"utils.d" -MT"utils.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "utils.o" "../utils.c"
+'Finished building: ../utils.c'
+' '
+'Building target: p3.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\p1\p2\ld_script.ld" -nostartfiles -Wl,-Map,p3.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "p3.elf"  ./D8Led.o ./button.o ./gpio.o ./init.o ./intcontroller.o ./keyboard.o ./leds.o ./main.o ./timer.o ./utils.o   
+'Finished building target: p3.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary p3.elf  "p3.hex"
+'Finished building: p3.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S p3.elf > "p3.lst"
+'Finished building: p3.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley p3.elf
+   text	   data	    bss	    dec	    hex	filename
+   4796	    200	      4	   5000	   1388	p3.elf
+'Finished building: p3.siz'
+' '
+20:59:46 **** Incremental Build of configuration Debug for project p3 ****
+cs-make all 
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley p3.elf
+   text	   data	    bss	    dec	    hex	filename
+   4796	    200	      4	   5000	   1388	p3.elf
+'Finished building: p3.siz'
+' '

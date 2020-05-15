@@ -1,0 +1,11 @@
+20:59:46 **** Incremental Build of configuration Debug for project p3 ****
+cs-make all 
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley p3.elf
+   text	   data	    bss	    dec	    hex	filename
+   4796	    200	      4	   5000	   1388	p3.elf
+'Finished building: p3.siz'
+' '
+
+20:59:49 Build Finished (took 2s.489ms)
+

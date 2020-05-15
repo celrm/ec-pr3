@@ -1,0 +1,62 @@
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD ./so.o
+START GROUP
+LOAD c:/users/celia/downloads/eclipsearm/sourcery-g++-lite-arm-2011.03/bin/../lib/gcc/arm-none-eabi/4.5.2\libgcc.a
+LOAD c:/users/celia/downloads/eclipsearm/sourcery-g++-lite-arm-2011.03/bin/../lib/gcc/arm-none-eabi/4.5.2/../../../../arm-none-eabi/lib\libc.a
+END GROUP
+                0x0c000000                . = 0xc000000
+
+.data           0x0c000000        0x8
+ *(.data)
+ .data          0x0c000000        0x8 ./so.o
+ *(.rodata)
+
+.bss            0x0c000008        0x4
+ *(.bss)
+ .bss           0x0c000008        0x4 ./so.o
+ *(COMMON)
+
+.text           0x0c00000c       0x38
+ *(.text)
+ .text          0x0c00000c       0x38 ./so.o
+                0x0c00000c                start
+                0x0c000044                PROVIDE (end, .)
+                0x0c7ff000                PROVIDE (_stack, 0xc7ff000)
+OUTPUT(p1.elf elf32-littlearm)
+
+.glue_7         0x0c000044        0x0
+ .glue_7        0x00000000        0x0 linker stubs
+
+.glue_7t        0x0c000044        0x0
+ .glue_7t       0x00000000        0x0 linker stubs
+
+.vfp11_veneer   0x0c000044        0x0
+ .vfp11_veneer  0x00000000        0x0 linker stubs
+
+.v4_bx          0x0c000044        0x0
+ .v4_bx         0x00000000        0x0 linker stubs
+
+.ARM.attributes
+                0x00000000       0x22
+ .ARM.attributes
+                0x00000000       0x22 ./so.o
+
+.debug_line     0x00000000       0x3f
+ .debug_line    0x00000000       0x3f ./so.o
+
+.debug_info     0x00000000       0x47
+ .debug_info    0x00000000       0x47 ./so.o
+
+.debug_abbrev   0x00000000       0x14
+ .debug_abbrev  0x00000000       0x14 ./so.o
+
+.debug_aranges  0x00000000       0x20
+ .debug_aranges
+                0x00000000       0x20 ./so.o

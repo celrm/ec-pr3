@@ -1,0 +1,29 @@
+14:15:18 **** Incremental Build of configuration Debug for project p2 ****
+cs-make all 
+'Building file: ../gpio.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="gpio.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"gpio.d" -MT"gpio.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "gpio.o" "../gpio.c"
+'Finished building: ../gpio.c'
+' '
+'Building target: p2.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\p1\p2\ld_script.ld" -nostartfiles -Wl,-Map,p2.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "p2.elf"  ./D8Led.o ./button.o ./gpio.o ./init.o ./leds.o ./main.o ./utils.o   
+'Finished building target: p2.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary p2.elf  "p2.hex"
+'Finished building: p2.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S p2.elf > "p2.lst"
+'Finished building: p2.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley p2.elf
+   text	   data	    bss	    dec	    hex	filename
+   4052	    120	      4	   4176	   1050	p2.elf
+'Finished building: p2.siz'
+' '
+
+14:15:20 Build Finished (took 1s.964ms)
+

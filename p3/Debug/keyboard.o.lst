@@ -1,0 +1,191 @@
+   1              		.cpu arm7tdmi
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 18, 4
+  11              		.file	"keyboard.c"
+  21              	.Ltext0:
+  22              		.file 1 "../keyboard.c"
+ 1701              		.align	2
+ 1704              	keyboard_base:
+ 1705 0000 00000006 		.word	100663296
+ 1706              		.text
+ 1707              		.align	2
+ 1708              		.global	kb_scan
+ 1710              	kb_scan:
+ 1711              	.LFB0:
+   1:../keyboard.c **** /*******************************************************************************************
+   2:../keyboard.c **** * File:		keyboard.c
+   3:../keyboard.c **** * Author:	
+   4:../keyboard.c **** * Desc:		Funciones de teclado
+   5:../keyboard.c **** * History:	
+   6:../keyboard.c **** *********************************************************************************************/
+   7:../keyboard.c **** 
+   8:../keyboard.c **** /*--- Ficheros de cabecera ---*/
+   9:../keyboard.c **** #include "44b.h"
+  10:../keyboard.c **** #include "keyboard.h"
+  11:../keyboard.c **** 
+  12:../keyboard.c **** /*--- Definición de macros ---*/
+  13:../keyboard.c **** #define KEY_VALUE_MASK	0x0f
+  14:../keyboard.c **** 
+  15:../keyboard.c **** /*--- Variables globales ---*/
+  16:../keyboard.c **** volatile static unsigned char *keyboard_base = (unsigned char *)0x06000000;
+  17:../keyboard.c **** 
+  18:../keyboard.c **** 
+  19:../keyboard.c **** int kb_scan(void)
+  20:../keyboard.c **** {
+ 1712              		.loc 1 20 0
+ 1713              		.cfi_startproc
+ 1714              		@ Function supports interworking.
+ 1715              		@ args = 0, pretend = 0, frame = 96
+ 1716              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1717 0000 0DC0A0E1 		mov	ip, sp
+ 1718              	.LCFI0:
+ 1719              		.cfi_def_cfa_register 12
+ 1720 0004 10D82DE9 		stmfd	sp!, {r4, fp, ip, lr, pc}
+ 1721 0008 04B04CE2 		sub	fp, ip, #4
+ 1722              		.cfi_offset 14, -8
+ 1723              		.cfi_offset 13, -12
+ 1724              		.cfi_offset 11, -16
+ 1725              		.cfi_offset 4, -20
+ 1726              	.LCFI1:
+ 1727              		.cfi_def_cfa 11, 4
+ 1728 000c 64D04DE2 		sub	sp, sp, #100
+  21:../keyboard.c **** 	int value = -1;
+ 1729              		.loc 1 21 0
+ 1730 0010 0030E0E3 		mvn	r3, #0
+ 1731 0014 1C300BE5 		str	r3, [fp, #-28]
+  22:../keyboard.c **** 	int i;
+  23:../keyboard.c **** 	char temp;
+  24:../keyboard.c **** 	int lines[4]  = {0xfd, 0xfb, 0xf7, 0xef};
+ 1732              		.loc 1 24 0
+ 1733 0018 A8309FE5 		ldr	r3, .L5
+ 1734 001c 30C04BE2 		sub	ip, fp, #48
+ 1735 0020 0F0093E8 		ldmia	r3, {r0, r1, r2, r3}
+ 1736 0024 0F008CE8 		stmia	ip, {r0, r1, r2, r3}
+  25:../keyboard.c **** 	int map[4][4] = {{0, 1, 2, 3},
+ 1737              		.loc 1 25 0
+ 1738 0028 9C309FE5 		ldr	r3, .L5+4
+ 1739 002c 70C04BE2 		sub	ip, fp, #112
+ 1740 0030 0340A0E1 		mov	r4, r3
+ 1741 0034 0F00B4E8 		ldmia	r4!, {r0, r1, r2, r3}
+ 1742 0038 0F00ACE8 		stmia	ip!, {r0, r1, r2, r3}
+ 1743 003c 0F00B4E8 		ldmia	r4!, {r0, r1, r2, r3}
+ 1744 0040 0F00ACE8 		stmia	ip!, {r0, r1, r2, r3}
+ 1745 0044 0F00B4E8 		ldmia	r4!, {r0, r1, r2, r3}
+ 1746 0048 0F00ACE8 		stmia	ip!, {r0, r1, r2, r3}
+ 1747 004c 0F0094E8 		ldmia	r4, {r0, r1, r2, r3}
+ 1748 0050 0F008CE8 		stmia	ip, {r0, r1, r2, r3}
+  26:../keyboard.c **** 					{4, 5, 6, 7},
+  27:../keyboard.c **** 					{8, 9, 0xA, 0xB},
+  28:../keyboard.c **** 					{0xC, 0xD, 0xE, 0xF}};
+  29:../keyboard.c **** 
+  30:../keyboard.c **** 	for (i = 0; (i < 4) && (value == -1); i++) {
+ 1749              		.loc 1 30 0
+ 1750 0054 0030A0E3 		mov	r3, #0
+ 1751 0058 18300BE5 		str	r3, [fp, #-24]
+ 1752 005c 0E0000EA 		b	.L2
+ 1753              	.L4:
+  31:../keyboard.c **** 		temp = *(keyboard_base+lines[i]);
+ 1754              		.loc 1 31 0
+ 1755 0060 68309FE5 		ldr	r3, .L5+8
+ 1756 0064 002093E5 		ldr	r2, [r3, #0]
+ 1757 0068 18101BE5 		ldr	r1, [fp, #-24]
+ 1758 006c 1B30E0E3 		mvn	r3, #27
+ 1759 0070 0111A0E1 		mov	r1, r1, asl #2
+ 1760 0074 14004BE2 		sub	r0, fp, #20
+ 1761 0078 011080E0 		add	r1, r0, r1
+ 1762 007c 033081E0 		add	r3, r1, r3
+ 1763 0080 003093E5 		ldr	r3, [r3, #0]
+ 1764 0084 033082E0 		add	r3, r2, r3
+ 1765 0088 0030D3E5 		ldrb	r3, [r3, #0]
+ 1766 008c 1D304BE5 		strb	r3, [fp, #-29]
+  30:../keyboard.c **** 	for (i = 0; (i < 4) && (value == -1); i++) {
+ 1767              		.loc 1 30 0
+ 1768 0090 18301BE5 		ldr	r3, [fp, #-24]
+ 1769 0094 013083E2 		add	r3, r3, #1
+ 1770 0098 18300BE5 		str	r3, [fp, #-24]
+ 1771              	.L2:
+  30:../keyboard.c **** 	for (i = 0; (i < 4) && (value == -1); i++) {
+ 1772              		.loc 1 30 0 is_stmt 0 discriminator 1
+ 1773 009c 18301BE5 		ldr	r3, [fp, #-24]
+ 1774 00a0 030053E3 		cmp	r3, #3
+ 1775 00a4 020000CA 		bgt	.L3
+  30:../keyboard.c **** 	for (i = 0; (i < 4) && (value == -1); i++) {
+ 1776              		.loc 1 30 0 discriminator 2
+ 1777 00a8 1C301BE5 		ldr	r3, [fp, #-28]
+ 1778 00ac 010073E3 		cmn	r3, #1
+ 1779 00b0 EAFFFF0A 		beq	.L4
+ 1780              	.L3:
+  32:../keyboard.c **** 
+  33:../keyboard.c **** 		if(( temp & KEY_VALUE_MASK) != KEY_VALUE_MASK) {
+  34:../keyboard.c **** 			//COMPLETAR: 
+  35:../keyboard.c **** 			//      si está el bit 1 a 0 la tecla es la map[i][3]
+  36:../keyboard.c **** 			//      si está el bit 2 a 0 la tecla es la map[i][2]
+  37:../keyboard.c **** 			//      si está el bit 3 a 0 la tecla es la map[i][1]
+  38:../keyboard.c **** 			//      si está el bit 4 a 0 la tecla es la map[i][0]
+  39:../keyboard.c **** 		}
+  40:../keyboard.c **** 	}
+  41:../keyboard.c **** 
+  42:../keyboard.c **** 	return value;
+ 1781              		.loc 1 42 0 is_stmt 1
+ 1782 00b4 1C301BE5 		ldr	r3, [fp, #-28]
+  43:../keyboard.c **** }
+ 1783              		.loc 1 43 0
+ 1784 00b8 0300A0E1 		mov	r0, r3
+ 1785 00bc 10D04BE2 		sub	sp, fp, #16
+ 1786 00c0 10689DE8 		ldmfd	sp, {r4, fp, sp, lr}
+ 1787 00c4 1EFF2FE1 		bx	lr
+ 1788              	.L6:
+ 1789              		.align	2
+ 1790              	.L5:
+ 1791 00c8 00000000 		.word	C.0.4679
+ 1792 00cc 10000000 		.word	C.1.4680
+ 1793 00d0 00000000 		.word	keyboard_base
+ 1794              		.cfi_endproc
+ 1795              	.LFE0:
+ 1797              		.section	.rodata
+ 1798              		.align	2
+ 1801              	C.0.4679:
+ 1802 0000 FD000000 		.word	253
+ 1803 0004 FB000000 		.word	251
+ 1804 0008 F7000000 		.word	247
+ 1805 000c EF000000 		.word	239
+ 1806              		.align	2
+ 1809              	C.1.4680:
+ 1810 0010 00000000 		.word	0
+ 1811 0014 01000000 		.word	1
+ 1812 0018 02000000 		.word	2
+ 1813 001c 03000000 		.word	3
+ 1814 0020 04000000 		.word	4
+ 1815 0024 05000000 		.word	5
+ 1816 0028 06000000 		.word	6
+ 1817 002c 07000000 		.word	7
+ 1818 0030 08000000 		.word	8
+ 1819 0034 09000000 		.word	9
+ 1820 0038 0A000000 		.word	10
+ 1821 003c 0B000000 		.word	11
+ 1822 0040 0C000000 		.word	12
+ 1823 0044 0D000000 		.word	13
+ 1824 0048 0E000000 		.word	14
+ 1825 004c 0F000000 		.word	15
+ 1826              		.text
+ 1827              	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 keyboard.c
+C:\Users\Celia\AppData\Local\Temp\ccAdBWvy.s:1701   .data:00000000 $d
+C:\Users\Celia\AppData\Local\Temp\ccAdBWvy.s:1704   .data:00000000 keyboard_base
+C:\Users\Celia\AppData\Local\Temp\ccAdBWvy.s:1707   .text:00000000 $a
+C:\Users\Celia\AppData\Local\Temp\ccAdBWvy.s:1710   .text:00000000 kb_scan
+C:\Users\Celia\AppData\Local\Temp\ccAdBWvy.s:1791   .text:000000c8 $d
+C:\Users\Celia\AppData\Local\Temp\ccAdBWvy.s:1801   .rodata:00000000 C.0.4679
+C:\Users\Celia\AppData\Local\Temp\ccAdBWvy.s:1809   .rodata:00000010 C.1.4680
+C:\Users\Celia\AppData\Local\Temp\ccAdBWvy.s:1798   .rodata:00000000 $d
+                     .debug_frame:00000010 $d
+
+NO UNDEFINED SYMBOLS

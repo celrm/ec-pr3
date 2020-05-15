@@ -1,0 +1,59 @@
+
+p1.elf:     file format elf32-littlearm
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .data         00000008  0c000000  0c000000  00008000  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  1 .bss          00000004  0c000008  0c000008  00008008  2**0
+                  ALLOC
+  2 .text         00000038  0c00000c  0c00000c  0000800c  2**2
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  3 .ARM.attributes 00000022  00000000  00000000  00008044  2**0
+                  CONTENTS, READONLY
+  4 .debug_line   0000003f  00000000  00000000  00008066  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000047  00000000  00000000  000080a5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 00000014  00000000  00000000  000080ec  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_aranges 00000020  00000000  00000000  00008100  2**3
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+0c00000c <start>:
+Y:      .word 0x0A
+.bss
+Mayor:  .space 4
+.text
+start:
+		LDR R4, =X
+ c00000c:	e59f4024 	ldr	r4, [pc, #36]	; c000038 <FIN+0x4>
+		LDR R3, =Y
+ c000010:	e59f3024 	ldr	r3, [pc, #36]	; c00003c <FIN+0x8>
+		LDR R5, =Mayor
+ c000014:	e59f5024 	ldr	r5, [pc, #36]	; c000040 <FIN+0xc>
+		LDR R1, [R4]
+ c000018:	e5941000 	ldr	r1, [r4]
+		LDR R2, [R3]
+ c00001c:	e5932000 	ldr	r2, [r3]
+		CMP R1, R2
+ c000020:	e1510002 	cmp	r1, r2
+		BLE else
+ c000024:	da000001 	ble	c000030 <else>
+		STR R1, [R5]
+ c000028:	e5851000 	str	r1, [r5]
+		B FIN
+ c00002c:	ea000000 	b	c000034 <FIN>
+
+0c000030 <else>:
+else:	STR R2, [R5]
+ c000030:	e5852000 	str	r2, [r5]
+
+0c000034 <FIN>:
+FIN:	B .
+ c000034:	eafffffe 	b	c000034 <FIN>
+ c000038:	0c000000 	.word	0x0c000000
+ c00003c:	0c000004 	.word	0x0c000004
+ c000040:	0c000008 	.word	0x0c000008

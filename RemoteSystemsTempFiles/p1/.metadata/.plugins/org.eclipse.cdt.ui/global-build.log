@@ -1,0 +1,98 @@
+14:13:46 **** Incremental Build of configuration Debug for project p2 ****
+cs-make all 
+'Building file: ../D8Led.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="D8Led.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"D8Led.d" -MT"D8Led.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "D8Led.o" "../D8Led.c"
+'Finished building: ../D8Led.c'
+' '
+'Building file: ../button.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="button.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"button.d" -MT"button.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "button.o" "../button.c"
+../button.c: In function 'read_button':
+../button.c:35:2: error: incompatible type for argument 2 of 'portG_read'
+../gpio.h:32:5: note: expected 'enum digital *' but argument is of type 'enum digital'
+../button.c:43:2: error: incompatible type for argument 2 of 'portG_read'
+../gpio.h:32:5: note: expected 'enum digital *' but argument is of type 'enum digital'
+cs-make: *** [button.o] Error 1
+14:14:46 **** Incremental Build of configuration Debug for project p2 ****
+cs-make all 
+'Building file: ../button.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="button.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"button.d" -MT"button.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "button.o" "../button.c"
+'Finished building: ../button.c'
+' '
+'Building file: ../gpio.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="gpio.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"gpio.d" -MT"gpio.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "gpio.o" "../gpio.c"
+../gpio.c: In function 'portG_conf':
+../gpio.c:57:4: warning: suggest parentheses around '+' inside '<<'
+../gpio.c:63:4: warning: suggest parentheses around '+' inside '<<'
+../gpio.c:69:4: warning: suggest parentheses around '+' inside '<<'
+../gpio.c:76:4: warning: suggest parentheses around '+' inside '<<'
+'Finished building: ../gpio.c'
+' '
+'Building file: ../init.S'
+'Invoking: ARM Sourcery Windows GCC Assembler'
+arm-none-eabi-gcc -x assembler-with-cpp -Wall -Wa,-adhlns="init.o.lst" -c -fmessage-length=0 -MMD -MP -MF"init.d" -MT"init.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "init.o" "../init.S"
+'Finished building: ../init.S'
+' '
+'Building file: ../leds.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="leds.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"leds.d" -MT"leds.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "leds.o" "../leds.c"
+'Finished building: ../leds.c'
+' '
+'Building file: ../main.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="main.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"main.d" -MT"main.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "main.o" "../main.c"
+'Finished building: ../main.c'
+' '
+'Building file: ../utils.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="utils.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"utils.d" -MT"utils.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "utils.o" "../utils.c"
+'Finished building: ../utils.c'
+' '
+'Building target: p2.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\p1\p2\ld_script.ld" -nostartfiles -Wl,-Map,p2.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "p2.elf"  ./D8Led.o ./button.o ./gpio.o ./init.o ./leds.o ./main.o ./utils.o   
+'Finished building target: p2.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary p2.elf  "p2.hex"
+'Finished building: p2.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S p2.elf > "p2.lst"
+'Finished building: p2.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley p2.elf
+   text	   data	    bss	    dec	    hex	filename
+   4052	    120	      4	   4176	   1050	p2.elf
+'Finished building: p2.siz'
+' '
+14:15:18 **** Incremental Build of configuration Debug for project p2 ****
+cs-make all 
+'Building file: ../gpio.c'
+'Invoking: ARM Sourcery Windows GCC C Compiler'
+arm-none-eabi-gcc -O0 -Wall -Wa,-adhlns="gpio.o.lst" -c -fmessage-length=0 -mapcs-frame -MMD -MP -MF"gpio.d" -MT"gpio.d" -mcpu=arm7tdmi -g3 -gdwarf-2 -o "gpio.o" "../gpio.c"
+'Finished building: ../gpio.c'
+' '
+'Building target: p2.elf'
+'Invoking: ARM Sourcery Windows GCC C Linker'
+arm-none-eabi-gcc -T"C:\hlocal\p1\p2\ld_script.ld" -nostartfiles -Wl,-Map,p2.map -mcpu=arm7tdmi -g3 -gdwarf-2 -o "p2.elf"  ./D8Led.o ./button.o ./gpio.o ./init.o ./leds.o ./main.o ./utils.o   
+'Finished building target: p2.elf'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Flash Image'
+arm-none-eabi-objcopy -O binary p2.elf  "p2.hex"
+'Finished building: p2.hex'
+' '
+'Invoking: ARM Sourcery Windows GNU Create Listing'
+arm-none-eabi-objdump -h -S p2.elf > "p2.lst"
+'Finished building: p2.lst'
+' '
+'Invoking: ARM Sourcery Windows GNU Print Size'
+arm-none-eabi-size  --format=berkeley p2.elf
+   text	   data	    bss	    dec	    hex	filename
+   4052	    120	      4	   4176	   1050	p2.elf
+'Finished building: p2.siz'
+' '
