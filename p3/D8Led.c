@@ -16,6 +16,8 @@
 **
 **-----------------------------------------------------------------*/
 
+// DONE
+
 #include "44b.h"
 #include "D8Led.h"
 
@@ -70,12 +72,12 @@ void D8Led_init(void)
 
 void D8Led_segment(int value)
 {
-	if( (value >= 0) && (value < 8) ) {}
-		//COMPLETAR: utilizar el codigo de practicas anteriores
+	if( (value >= 0) && (value < 8) )
+		LED8ADDR = ~Segments[value];
 }
 
 void D8Led_digit(int value)
 {
-	if( (value >= 0) && (value < 16) ) {}
-		//COMPLETAR: utilizar el codigo de la practicas anteriores
+	if( (value >= 0) && (value < 16) )
+		LED8ADDR = ~Digits[value];
 }

@@ -16,6 +16,8 @@
 **
 **-----------------------------------------------------------------*/
 
+// DONE
+
 #include "44b.h"
 #include "leds.h"
 #include "gpio.h"
@@ -34,7 +36,8 @@ static unsigned int status = 0;
 
 void leds_init( void )
 {
-	//COMPLETAR: tomar la implementación de la primera parte
+	portB_conf(9,OUTPUT);
+	portB_conf(10,OUTPUT);
 
 	leds_display( status );
 }
@@ -84,11 +87,15 @@ void leds_display( unsigned int leds_status )
 {
 	status = leds_status;
 	
-	// LED 1
-	if( status & LED1 ) {}
-		//COMPLETAR: tomar la implementación de la primera parte
+	// LED1
+	if( status & LED1 )
+		portB_write(9,LOW);
+	else
+		portB_write(9,HIGH);
 
-	// LED 2
-	if( status & LED2 ) {}
-		//COMPLETAR: tomar la implementación de la primera parte
+	// LED2
+	if( status & LED2 )
+		portB_write(10,LOW);
+	else
+		portB_write(10,HIGH);
 }

@@ -15,6 +15,8 @@
 **
 **-----------------------------------------------------------------*/
 
+// DONE
+
 #include "44b.h"
 #include "utils.h"
 #include "button.h"
@@ -24,9 +26,18 @@
 unsigned int read_button(void)
 {
 	unsigned int buttons = 0;
-	enum digital val;
+	// enum digital val;
 
-	//COMPLETAR: tomar el código de prácticas anteirores
+	enum digital val1,val2;
+
+	portG_read(6,&val1);
+	portG_read(7,&val2);
+
+	if (val1 == LOW)
+		buttons = buttons | BUT1;
+
+	if (val2 == LOW)
+		buttons = buttons | BUT2;
 
 	return buttons;
 }

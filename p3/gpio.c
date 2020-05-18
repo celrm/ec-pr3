@@ -1,6 +1,8 @@
 #include "44b.h"
 #include "gpio.h"
 
+// FALTA
+
 /* Port B interface implementation */
 
 int portB_conf(int pin, enum port_mode mode)
@@ -9,10 +11,11 @@ int portB_conf(int pin, enum port_mode mode)
 	if (pin < 0 || pin > 10)
 		return -1;
 
-	if (mode == SIGOUT) {}
-		// COMPLETAR si es necesario
-	else if (mode == OUTPUT) {}
-		// COMPLETAR: tomar la implementacion practicas anteriores
+	if (mode == SIGOUT)
+		// COMPLETAR si es necesario ????????
+		rPCONB = rPCONB | (0x1 << pin);
+	else if (mode == OUTPUT)
+		rPCONB = rPCONB & ~(0x1 << pin);
 	else
 		ret = -1;
 
@@ -27,11 +30,10 @@ int portB_write(int pin, enum digital val)
 	if (val < 0 || val > 1)
 		return -1;
 
-	if (val) {}
-		// COMPLETAR: tomar la implementacion practicas anteriores
-	else {}
-		// COMPLETAR: tomar la implementacion practicas anteriores
-
+	if (val)
+		rPDATB = rPDATB | (0x1 << pin);
+	else
+		rPDATB = rPDATB & ~(0x1 << pin);
 	return 0;
 }
 
@@ -46,16 +48,18 @@ int portG_conf(int pin, enum port_mode mode)
 
 	switch (mode) {
 		case INPUT:
-		// COMPLETAR: tomar la implementación prácticas anteriores
+			rPCONG = rPCONG & ~(0x3 << pos);
 			break;
 		case OUTPUT:
-		// COMPLETAR: tomar la implementación prácticas anteriores
+			rPCONG = rPCONG & ~(0x2 << pos);
+			rPCONG = rPCONG | (0x1 << pos);
 			break;
 		case SIGOUT:
-		// COMPLETAR: tomar la implementación prácticas anteriores
+			rPCONG = rPCONG & ~(0x1 << pos);
+			rPCONG = rPCONG | (0x2 << pos);
 			break;
 		case EINT:
-		// COMPLETAR: tomar la implementación prácticas anteriores
+			rPCONG = rPCONG | (0x3 << pos);
 			break;
 		default:
 			return -1;
@@ -114,10 +118,11 @@ int portG_write(int pin, enum digital val)
 	if ((rPCONG & (0x3 << pos)) != (0x1 << pos))
 		return -1;
 
-	if (val) {}
-		// COMPLETAR: tomar la implementación prácticas anteriores
-	else {}
-		// COMPLETAR: tomar la implementación prácticas anteriores
+	if (val)
+		rPDATG = rPDATG | (0x1 << pin);
+	else
+		rPDATG = rPDATG & ~(0x1 << pin);
+
 
 	return 0;
 }
@@ -132,10 +137,10 @@ int portG_read(int pin, enum digital* val)
 	if (rPCONG & (0x3 << pos))
 		return -1;
 
-	if (rPDATG & (0x1 << pin)) {}
-		// COMPLETAR: tomar la implementación prácticas anteriores
-	else {}
-		// COMPLETAR: tomar la implementación prácticas anteriores
+	if (rPDATG & (0x1 << pin))
+		*val = HIGH;
+	else
+		val = LOW;
 
 	return 0;
 }
@@ -148,10 +153,10 @@ int portG_conf_pup(int pin, enum enable st)
 	if (st != ENABLE && st != DISABLE)
 		return -1;
 
-	if (st == ENABLE) {}
-		// COMPLETAR: tomar la implementación prácticas anteriores
-	else {}
-		// COMPLETAR: tomar la implementación prácticas anteriores
+	if (st == ENABLE)
+		rPUPG = rPUPG & ~(0x1 << pin);
+	else
+		rPUPG = rPUPG | (0x1 << pin);
 
 	return 0;
 }

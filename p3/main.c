@@ -1,3 +1,6 @@
+
+// FALTA MUCHO
+
 #include <stdio.h>
 #include "44b.h"
 #include "button.h"
@@ -29,10 +32,18 @@ void keyboard_ISR(void) __attribute__ ((interrupt ("IRQ")));
 
 void timer_ISR(void)
 {
+	// CELIA: no se si es esto
 	//COMPLETAR: tomar el código de avance de posición del led rotante de la práctica anterior
+	if (RL.direction)
+		RL.position = (RL.position + 1) % 6;
+	else
+		RL.position = (RL.position + 5) % 6;
 
 	D8Led_segment(RL.position);
 }
+
+// ?????????
+static int cont = 0;
 
 void button_ISR(void)
 {
@@ -41,6 +52,22 @@ void button_ISR(void)
 
 	//COMPLETAR: usar el código de la primera parte parte de atención a los
 	//pulsadores
+
+	if (buttons & BUT1) {
+		led1_off();
+		led2_off();
+		RL.direction = ~RL.direction;
+	}
+
+	if (buttons & BUT2) {
+		cont++;
+		if (cont % 2 == 0)
+			led1_switch();
+		else led2_switch();
+//			if (~RL.moving)
+//				RL.iter = RL.speed; // NO hay iter??
+			RL.moving = ~RL.moving;
+		}
 
 	// eliminamos rebotes
 	Delay(2000);
