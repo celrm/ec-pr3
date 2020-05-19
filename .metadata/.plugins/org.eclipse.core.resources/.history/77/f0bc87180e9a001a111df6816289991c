@@ -74,8 +74,9 @@ void button_ISR(void)
 	// eliminamos rebotes
 	Delay(2000);
 	// borramos el flag en extintpnd
+	rEXTINTPND |= 0x3 << 2;
 	rEXTINTPND = whicheint;
-	ic_cleanflag(INT_EINT4567); // CELIA: ??????????
+	ic_cleanflag(INT_EINT4567);
 				//COMPLETAR: debemos borrar las peticiones de interrupción en
 		         //EXTINTPND escribiendo un 1 en los flags que queremos borrar (los
 				 //correspondientes a los pulsadores pulsados)

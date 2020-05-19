@@ -1,7 +1,7 @@
 #include "44b.h"
 #include "gpio.h"
 
-// FALTA ???
+// FALTA
 
 /* Port B interface implementation */
 
@@ -93,13 +93,11 @@ switch (trig) {
 			// bajada
 			break;
 		case RISING:
-			rEXTINT |= (0x4 << pos);
 			// COMPLETAR: poner en rEXTINT a partir de la posición pos tres bits
 			// a 100, para configurar interrupciones externas por flanco de
 			// subida
 			break;
 		case EDGE:
-			rEXTINT |= (0x6 << pos);
 			// COMPLETAR: poner en rEXTINT a partir de la posición pos tres bits
 			// a 110, para configurar interrupciones externas por cualquier
 			// flanco

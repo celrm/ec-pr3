@@ -1,7 +1,7 @@
 #include "44b.h"
 #include "gpio.h"
 
-// FALTA ???
+// FALTA
 
 /* Port B interface implementation */
 
@@ -77,29 +77,24 @@ int portG_eint_trig(int pin, enum trigger trig)
 
 switch (trig) {
 		case LLOW:
-			rEXTINT |= (0x0 << pos);
 			// COMPLETAR: poner en rEXTINT a partir de la posición pos tres bits
 			// a 000, para configurar interrupciones externas por nivel bajo
 			break;
 		case LHIGH:
-			rEXTINT |= (0x1 << pos);
 			// COMPLETAR: poner en rEXTINT a partir de la posición pos tres bits
 			// a 001, para configurar interrupciones externas por nivel alto
 			break;
 		case FALLING:
-			rEXTINT |= (0x2 << pos);
 			// COMPLETAR: poner en rEXTINT a partir de la posición pos tres bits
 			// a 010, para configurar interrupciones externas por flanco de
 			// bajada
 			break;
 		case RISING:
-			rEXTINT |= (0x4 << pos);
 			// COMPLETAR: poner en rEXTINT a partir de la posición pos tres bits
 			// a 100, para configurar interrupciones externas por flanco de
 			// subida
 			break;
 		case EDGE:
-			rEXTINT |= (0x6 << pos);
 			// COMPLETAR: poner en rEXTINT a partir de la posición pos tres bits
 			// a 110, para configurar interrupciones externas por cualquier
 			// flanco

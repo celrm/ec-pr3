@@ -40,8 +40,6 @@ void timer_ISR(void)
 		RL.position = (RL.position + 5) % 6;
 
 	D8Led_segment(RL.position);
-
-//	ic_cleanflag(INT_TIMER0); // CELIA : esto aparece en la practica no se si hay que ponerlo
 }
 
 // ?????????
@@ -61,22 +59,20 @@ void button_ISR(void)
 		RL.direction = ~RL.direction;
 	}
 
-	if (buttons & BUT2) { // CELIA: QUE HA_y que hacer con esto
+	if (buttons & BUT2) {
 		cont++;
 		if (cont % 2 == 0)
 			led1_switch();
 		else led2_switch();
 //			if (~RL.moving)
-//				RL.iter = RL.speed; // CELIA: NO hay iter??
+//				RL.iter = RL.speed; // NO hay iter??
 			RL.moving = ~RL.moving;
 		}
 
 	// eliminamos rebotes
 	Delay(2000);
 	// borramos el flag en extintpnd
-	rEXTINTPND = whicheint;
-	ic_cleanflag(INT_EINT4567); // CELIA: ??????????
-				//COMPLETAR: debemos borrar las peticiones de interrupción en
+	rEXTINTPND = 0;//COMPLETAR: debemos borrar las peticiones de interrupción en
 		         //EXTINTPND escribiendo un 1 en los flags que queremos borrar (los
 				 //correspondientes a los pulsadores pulsados)
 }
@@ -182,8 +178,8 @@ int setup(void)
 
 	// Registramos las ISRs
 	pISR_TIMER0   = (unsigned) timer_ISR; //COMPLETAR: registrar la RTI del timer
-	pISR_EINT4567 = (unsigned) button_ISR; //COMPLETAR: registrar la RTI de los botones
-	pISR_EINT1    = (unsigned) keyboard_ISR; //COMPLETAR: registrar la RTI del teclado
+	pISR_EINT4567 = (unsigned) timer_ISR; //COMPLETAR: registrar la RTI de los botones
+	pISR_EINT1    = (unsigned) timer_ISR; //COMPLETAR: registrar la RTI del teclado
 
 	/* Configuración del controlador de interrupciones
 	 * Habilitamos la línea IRQ, en modo vectorizado 
