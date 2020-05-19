@@ -71,6 +71,7 @@ void button_ISR(void)
 	Delay(2000);
 	// borramos el flag en extintpnd
 	ic_cleanflag(INT_EINT4567);
+
 }
 
 void keyboard_ISR(void)

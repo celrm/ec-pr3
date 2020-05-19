@@ -81,8 +81,8 @@ int tmr_update(enum tmr_timer t)
     if (t < 0 || t > 5)
         return -1;
     
-    rTCON = rTCON | (1 << (pos+1)); //el bit de actualizacion es el segundo de cada bloque
-    rTCON = rTCON & ~(1 << (pos+1));
+    rTCON = rTCON | (1 << pos +1); //el bit de actualizacion es el segundo de cada bloque
+    rTCON = rTCON & ~(1 << pos +1);
 
     return 0;
 }
@@ -99,19 +99,19 @@ int tmr_set_mode(enum tmr_timer t, enum tmr_mode mode)
     
     if (mode == ONE_SHOT) {
         if (t!= 5){
-            rTCON = rTCON & ~(1 << (pos+3));
+            rTCON = rTCON & ~(1 << pos +3);
         }
         else{
-            rTCON = rTCON & ~(1 << (pos+2)); //el 5 no tiene inverter
+            rTCON = rTCON & ~(1 << pos +2); //el 5 no tiene inverter
         }
     }
 
     else if (mode == RELOAD) {
         if (t!= 5){
-            rTCON = rTCON | (1 << (pos+3));
+            rTCON = rTCON | (1 << pos +3);
         }
         else{
-            rTCON = rTCON | (1 << (pos+2)); //el 5 no tiene inverter
+            rTCON = rTCON | (1 << pos +2); //el 5 no tiene inverter
         }
     }
     else

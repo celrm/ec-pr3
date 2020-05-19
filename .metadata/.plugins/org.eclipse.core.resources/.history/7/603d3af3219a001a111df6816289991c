@@ -71,6 +71,9 @@ void button_ISR(void)
 	Delay(2000);
 	// borramos el flag en extintpnd
 	ic_cleanflag(INT_EINT4567);
+				//COMPLETAR: debemos borrar las peticiones de interrupción en
+		         //EXTINTPND escribiendo un 1 en los flags que queremos borrar (los
+				 //correspondientes a los pulsadores pulsados)
 }
 
 void keyboard_ISR(void)
@@ -152,6 +155,7 @@ int setup(void)
 	/* Configuración del timer */
 
 	tmr_set_mode(TIMER0, RELOAD);
+	tmr_set_prescaler(0, PRESCALER);
 	tmr_set_prescaler(TIMER0, 255);
 	tmr_set_divider(TIMER0, D1_8);
 	tmr_set_count(TIMER0, 62500, 1);

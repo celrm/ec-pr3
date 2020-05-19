@@ -162,58 +162,105 @@
  1866              		.cfi_def_cfa 11, 4
  1867 0030 08D04DE2 		sub	sp, sp, #8
  1868 0034 10000BE5 		str	r0, [fp, #-16]
-  73:../D8Led.c    **** 	if( (value >= 0) && (value < 8) ) {}
-  74:../D8Led.c    **** 		//COMPLETAR: utilizar el codigo de practicas anteriores
+  73:../D8Led.c    **** 	if( (value >= 0) && (value < 8) )
+ 1869              		.loc 1 73 0
+ 1870 0038 10301BE5 		ldr	r3, [fp, #-16]
+ 1871 003c 000053E3 		cmp	r3, #0
+ 1872 0040 0A0000BA 		blt	.L2
+ 1873              		.loc 1 73 0 is_stmt 0 discriminator 1
+ 1874 0044 10301BE5 		ldr	r3, [fp, #-16]
+ 1875 0048 070053E3 		cmp	r3, #7
+ 1876 004c 070000CA 		bgt	.L2
+  74:../D8Led.c    **** 		LED8ADDR = ~Segments[value];
+ 1877              		.loc 1 74 0 is_stmt 1
+ 1878 0050 8537A0E3 		mov	r3, #34865152
+ 1879 0054 20209FE5 		ldr	r2, .L4
+ 1880 0058 10101BE5 		ldr	r1, [fp, #-16]
+ 1881 005c 012192E7 		ldr	r2, [r2, r1, asl #2]
+ 1882 0060 FF2002E2 		and	r2, r2, #255
+ 1883 0064 0220E0E1 		mvn	r2, r2
+ 1884 0068 FF2002E2 		and	r2, r2, #255
+ 1885 006c 0020C3E5 		strb	r2, [r3, #0]
+ 1886              	.L2:
   75:../D8Led.c    **** }
- 1869              		.loc 1 75 0
- 1870 0038 0CD04BE2 		sub	sp, fp, #12
- 1871 003c 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 1872 0040 1EFF2FE1 		bx	lr
- 1873              		.cfi_endproc
- 1874              	.LFE1:
- 1876              		.align	2
- 1877              		.global	D8Led_digit
- 1879              	D8Led_digit:
- 1880              	.LFB2:
+ 1887              		.loc 1 75 0
+ 1888 0070 0CD04BE2 		sub	sp, fp, #12
+ 1889 0074 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 1890 0078 1EFF2FE1 		bx	lr
+ 1891              	.L5:
+ 1892              		.align	2
+ 1893              	.L4:
+ 1894 007c 00000000 		.word	Segments
+ 1895              		.cfi_endproc
+ 1896              	.LFE1:
+ 1898              		.align	2
+ 1899              		.global	D8Led_digit
+ 1901              	D8Led_digit:
+ 1902              	.LFB2:
   76:../D8Led.c    **** 
   77:../D8Led.c    **** void D8Led_digit(int value)
   78:../D8Led.c    **** {
- 1881              		.loc 1 78 0
- 1882              		.cfi_startproc
- 1883              		@ Function supports interworking.
- 1884              		@ args = 0, pretend = 0, frame = 8
- 1885              		@ frame_needed = 1, uses_anonymous_args = 0
- 1886 0044 0DC0A0E1 		mov	ip, sp
- 1887              	.LCFI4:
- 1888              		.cfi_def_cfa_register 12
- 1889 0048 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
- 1890 004c 04B04CE2 		sub	fp, ip, #4
- 1891              		.cfi_offset 14, -8
- 1892              		.cfi_offset 13, -12
- 1893              		.cfi_offset 11, -16
- 1894              	.LCFI5:
- 1895              		.cfi_def_cfa 11, 4
- 1896 0050 08D04DE2 		sub	sp, sp, #8
- 1897 0054 10000BE5 		str	r0, [fp, #-16]
-  79:../D8Led.c    **** 	if( (value >= 0) && (value < 16) ) {}
-  80:../D8Led.c    **** 		//COMPLETAR: utilizar el codigo de la practicas anteriores
+ 1903              		.loc 1 78 0
+ 1904              		.cfi_startproc
+ 1905              		@ Function supports interworking.
+ 1906              		@ args = 0, pretend = 0, frame = 8
+ 1907              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1908 0080 0DC0A0E1 		mov	ip, sp
+ 1909              	.LCFI4:
+ 1910              		.cfi_def_cfa_register 12
+ 1911 0084 00D82DE9 		stmfd	sp!, {fp, ip, lr, pc}
+ 1912 0088 04B04CE2 		sub	fp, ip, #4
+ 1913              		.cfi_offset 14, -8
+ 1914              		.cfi_offset 13, -12
+ 1915              		.cfi_offset 11, -16
+ 1916              	.LCFI5:
+ 1917              		.cfi_def_cfa 11, 4
+ 1918 008c 08D04DE2 		sub	sp, sp, #8
+ 1919 0090 10000BE5 		str	r0, [fp, #-16]
+  79:../D8Led.c    **** 	if( (value >= 0) && (value < 16) )
+ 1920              		.loc 1 79 0
+ 1921 0094 10301BE5 		ldr	r3, [fp, #-16]
+ 1922 0098 000053E3 		cmp	r3, #0
+ 1923 009c 0A0000BA 		blt	.L6
+ 1924              		.loc 1 79 0 is_stmt 0 discriminator 1
+ 1925 00a0 10301BE5 		ldr	r3, [fp, #-16]
+ 1926 00a4 0F0053E3 		cmp	r3, #15
+ 1927 00a8 070000CA 		bgt	.L6
+  80:../D8Led.c    **** 		LED8ADDR = ~Digits[value];
+ 1928              		.loc 1 80 0 is_stmt 1
+ 1929 00ac 8537A0E3 		mov	r3, #34865152
+ 1930 00b0 20209FE5 		ldr	r2, .L8
+ 1931 00b4 10101BE5 		ldr	r1, [fp, #-16]
+ 1932 00b8 012192E7 		ldr	r2, [r2, r1, asl #2]
+ 1933 00bc FF2002E2 		and	r2, r2, #255
+ 1934 00c0 0220E0E1 		mvn	r2, r2
+ 1935 00c4 FF2002E2 		and	r2, r2, #255
+ 1936 00c8 0020C3E5 		strb	r2, [r3, #0]
+ 1937              	.L6:
   81:../D8Led.c    **** }
- 1898              		.loc 1 81 0
- 1899 0058 0CD04BE2 		sub	sp, fp, #12
- 1900 005c 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 1901 0060 1EFF2FE1 		bx	lr
- 1902              		.cfi_endproc
- 1903              	.LFE2:
- 1905              	.Letext0:
+ 1938              		.loc 1 81 0
+ 1939 00cc 0CD04BE2 		sub	sp, fp, #12
+ 1940 00d0 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 1941 00d4 1EFF2FE1 		bx	lr
+ 1942              	.L9:
+ 1943              		.align	2
+ 1944              	.L8:
+ 1945 00d8 20000000 		.word	Digits
+ 1946              		.cfi_endproc
+ 1947              	.LFE2:
+ 1949              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 D8Led.c
-C:\Users\Celia\AppData\Local\Temp\ccov5yS7.s:1783   .data:00000000 $d
-C:\Users\Celia\AppData\Local\Temp\ccov5yS7.s:1786   .data:00000000 Segments
-C:\Users\Celia\AppData\Local\Temp\ccov5yS7.s:1798   .data:00000020 Digits
-C:\Users\Celia\AppData\Local\Temp\ccov5yS7.s:1816   .text:00000000 $a
-C:\Users\Celia\AppData\Local\Temp\ccov5yS7.s:1819   .text:00000000 D8Led_init
-C:\Users\Celia\AppData\Local\Temp\ccov5yS7.s:1850   .text:00000024 D8Led_segment
-C:\Users\Celia\AppData\Local\Temp\ccov5yS7.s:1879   .text:00000044 D8Led_digit
+C:\Users\Celia\AppData\Local\Temp\ccCoAhVd.s:1783   .data:00000000 $d
+C:\Users\Celia\AppData\Local\Temp\ccCoAhVd.s:1786   .data:00000000 Segments
+C:\Users\Celia\AppData\Local\Temp\ccCoAhVd.s:1798   .data:00000020 Digits
+C:\Users\Celia\AppData\Local\Temp\ccCoAhVd.s:1816   .text:00000000 $a
+C:\Users\Celia\AppData\Local\Temp\ccCoAhVd.s:1819   .text:00000000 D8Led_init
+C:\Users\Celia\AppData\Local\Temp\ccCoAhVd.s:1850   .text:00000024 D8Led_segment
+C:\Users\Celia\AppData\Local\Temp\ccCoAhVd.s:1894   .text:0000007c $d
+C:\Users\Celia\AppData\Local\Temp\ccCoAhVd.s:1898   .text:00000080 $a
+C:\Users\Celia\AppData\Local\Temp\ccCoAhVd.s:1901   .text:00000080 D8Led_digit
+C:\Users\Celia\AppData\Local\Temp\ccCoAhVd.s:1945   .text:000000d8 $d
                      .debug_frame:00000010 $d
 
 NO UNDEFINED SYMBOLS

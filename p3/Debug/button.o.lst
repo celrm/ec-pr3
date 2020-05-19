@@ -62,24 +62,59 @@
  1751 0014 10300BE5 		str	r3, [fp, #-16]
   27:../button.c   **** 	enum digital val;
   28:../button.c   **** 
-  29:../button.c   **** 	//COMPLETAR: tomar el código de prácticas anteirores
-  30:../button.c   **** 
-  31:../button.c   **** 	return buttons;
- 1752              		.loc 1 31 0
- 1753 0018 10301BE5 		ldr	r3, [fp, #-16]
-  32:../button.c   **** }
- 1754              		.loc 1 32 0
- 1755 001c 0300A0E1 		mov	r0, r3
- 1756 0020 0CD04BE2 		sub	sp, fp, #12
- 1757 0024 00689DE8 		ldmfd	sp, {fp, sp, lr}
- 1758 0028 1EFF2FE1 		bx	lr
- 1759              		.cfi_endproc
- 1760              	.LFE0:
- 1762              	.Letext0:
+  29:../button.c   **** 	portG_read(6, &val);
+ 1752              		.loc 1 29 0
+ 1753 0018 11304BE2 		sub	r3, fp, #17
+ 1754 001c 0600A0E3 		mov	r0, #6
+ 1755 0020 0310A0E1 		mov	r1, r3
+ 1756 0024 FEFFFFEB 		bl	portG_read
+  30:../button.c   **** 	if (val == LOW)
+ 1757              		.loc 1 30 0
+ 1758 0028 11305BE5 		ldrb	r3, [fp, #-17]	@ zero_extendqisi2
+ 1759 002c 000053E3 		cmp	r3, #0
+ 1760 0030 0200001A 		bne	.L2
+  31:../button.c   **** 		buttons = buttons | BUT1;
+ 1761              		.loc 1 31 0
+ 1762 0034 10301BE5 		ldr	r3, [fp, #-16]
+ 1763 0038 013083E3 		orr	r3, r3, #1
+ 1764 003c 10300BE5 		str	r3, [fp, #-16]
+ 1765              	.L2:
+  32:../button.c   **** 
+  33:../button.c   **** 	portG_read(7, &val);
+ 1766              		.loc 1 33 0
+ 1767 0040 11304BE2 		sub	r3, fp, #17
+ 1768 0044 0700A0E3 		mov	r0, #7
+ 1769 0048 0310A0E1 		mov	r1, r3
+ 1770 004c FEFFFFEB 		bl	portG_read
+  34:../button.c   **** 	if (val == LOW)
+ 1771              		.loc 1 34 0
+ 1772 0050 11305BE5 		ldrb	r3, [fp, #-17]	@ zero_extendqisi2
+ 1773 0054 000053E3 		cmp	r3, #0
+ 1774 0058 0200001A 		bne	.L3
+  35:../button.c   **** 		buttons = buttons | BUT2;
+ 1775              		.loc 1 35 0
+ 1776 005c 10301BE5 		ldr	r3, [fp, #-16]
+ 1777 0060 023083E3 		orr	r3, r3, #2
+ 1778 0064 10300BE5 		str	r3, [fp, #-16]
+ 1779              	.L3:
+  36:../button.c   **** 
+  37:../button.c   **** 	return buttons;
+ 1780              		.loc 1 37 0
+ 1781 0068 10301BE5 		ldr	r3, [fp, #-16]
+  38:../button.c   **** }
+ 1782              		.loc 1 38 0
+ 1783 006c 0300A0E1 		mov	r0, r3
+ 1784 0070 0CD04BE2 		sub	sp, fp, #12
+ 1785 0074 00689DE8 		ldmfd	sp, {fp, sp, lr}
+ 1786 0078 1EFF2FE1 		bx	lr
+ 1787              		.cfi_endproc
+ 1788              	.LFE0:
+ 1790              	.Letext0:
 DEFINED SYMBOLS
                             *ABS*:00000000 button.c
-C:\Users\Celia\AppData\Local\Temp\cc8Xwgil.s:1728   .text:00000000 $a
-C:\Users\Celia\AppData\Local\Temp\cc8Xwgil.s:1731   .text:00000000 read_button
+C:\Users\Celia\AppData\Local\Temp\cc25kuQs.s:1728   .text:00000000 $a
+C:\Users\Celia\AppData\Local\Temp\cc25kuQs.s:1731   .text:00000000 read_button
                      .debug_frame:00000010 $d
 
-NO UNDEFINED SYMBOLS
+UNDEFINED SYMBOLS
+portG_read
