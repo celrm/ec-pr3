@@ -74,24 +74,20 @@ int portG_eint_trig(int pin, enum trigger trig)
 
 switch (trig) {
 		case LLOW:
-			rEXTINT = rEXTINT & ~(0x3 << pos);
-			rEXTINT = rEXTINT | (0x0 << pos);
+			rEXTINT |= (0x0 << pos);
+			rEXTINT &= ~(0x3 << pos);
 			break;
 		case LHIGH:
-			rEXTINT = rEXTINT & ~(0x3 << pos);
-			rEXTINT = rEXTINT | (0x1 << pos);
+			rEXTINT |= (0x1 << pos);
 			break;
 		case FALLING:
-			rEXTINT = rEXTINT & ~(0x3 << pos);
-			rEXTINT = rEXTINT | (0x2 << pos);
+			rEXTINT |= (0x2 << pos);
 			break;
 		case RISING:
-			rEXTINT = rEXTINT & ~(0x3 << pos);
-			rEXTINT = rEXTINT | (0x4 << pos);
+			rEXTINT |= (0x4 << pos);
 			break;
 		case EDGE:
-			rEXTINT = rEXTINT & ~(0x3 << pos);
-			rEXTINT = rEXTINT | (0x6 << pos);
+			rEXTINT |= (0x6 << pos);
 			break;
 		default:
 			return -1;

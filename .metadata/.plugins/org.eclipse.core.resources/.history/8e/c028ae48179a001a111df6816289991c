@@ -37,7 +37,7 @@ int ic_conf_irq(enum enable st, enum int_vec vec)
 		return -1;
 
 	if (vec == VEC) {
-        conf = conf & ~(1 << 2);
+        conf = conf & ~(1 << 2); //suponiendo que bit[2] es el 2do contando por la izquierda
     }
 	else {
         conf = conf | (1 << 2);
