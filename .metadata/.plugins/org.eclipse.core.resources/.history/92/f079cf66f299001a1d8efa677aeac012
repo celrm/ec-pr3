@@ -183,6 +183,7 @@ int setup(void)
 	 * Configuramos la línea EINT4567 en modo IRQ y la habilitamos
 	 * Configuramos la línea EINT1 en modo IRQ y la habilitamos
 	 */
+
 	ic_init();
 	//COMPLETAR: utilizando el interfaz definido en intcontroller.h
 	ic_conf_irq(ENABLE, VEC); //		habilitar la línea IRQ en modo vectorizado
@@ -192,7 +193,7 @@ int setup(void)
 	ic_conf_line(INT_EINT1, IRQ); //		configurar la línea INT_EINT1 en modo IRQ
 	ic_enable(INT_TIMER0); //		habilitar la línea INT_TIMER0
 	ic_enable(INT_EINT4567); //		habilitar la línea INT_EINT4567
-	ic_enable(INT_EINT1); //		habilitar la línea INT_EINT1
+	ic_enable(INT_EINT1);//		habilitar la línea INT_EINT1
 
 	/***************************************************/
 
