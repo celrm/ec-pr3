@@ -5,8 +5,6 @@
 * History:	
 *********************************************************************************************/
 
-// DONE
-
 /*--- Ficheros de cabecera ---*/
 #include "44b.h"
 #include "keyboard.h"
@@ -41,11 +39,6 @@ int kb_scan(void)
 				value = map[i][1];
 			else if(( temp & 0x8) == 0 )
 				value = map[i][0];
-			//COMPLETAR: 
-			//      si está el bit 1 a 0 la tecla es la map[i][3]
-			//      si está el bit 2 a 0 la tecla es la map[i][2]
-			//      si está el bit 3 a 0 la tecla es la map[i][1]
-			//      si está el bit 4 a 0 la tecla es la map[i][0]
 		}
 	}
 

@@ -1,6 +1,4 @@
 
-// FALTA MUCHO
-
 #include <stdio.h>
 #include "44b.h"
 #include "button.h"
@@ -32,8 +30,6 @@ void keyboard_ISR(void) __attribute__ ((interrupt ("IRQ")));
 
 void timer_ISR(void)
 {
-	// CELIA: no se si es esto
-	//COMPLETAR: tomar el código de avance de posición del led rotante de la práctica anterior
 	if (RL.direction)
 		RL.position = (RL.position + 1) % 6;
 	else
@@ -41,10 +37,10 @@ void timer_ISR(void)
 
 	D8Led_segment(RL.position);
 
-//	ic_cleanflag(INT_TIMER0); // CELIA : esto aparece en la practica no se si hay que ponerlo
+	ic_cleanflag(INT_TIMER0);
 }
 
-// ?????????
+
 static int cont = 0;
 
 void button_ISR(void)
@@ -59,26 +55,26 @@ void button_ISR(void)
 		led1_off();
 		led2_off();
 		RL.direction = ~RL.direction;
+//		tmr_start(TIMER0); // CELIA: ????????
 	}
 
-	if (buttons & BUT2) { // CELIA: QUE HA_y que hacer con esto
+	if (buttons & BUT2) {
 		cont++;
 		if (cont % 2 == 0)
 			led1_switch();
-		else led2_switch();
-//			if (~RL.moving)
-//				RL.iter = RL.speed; // CELIA: NO hay iter??
-			RL.moving = ~RL.moving;
-		}
+		else
+			led2_switch();
+		RL.moving = ~RL.moving;
+	}
 
 	// eliminamos rebotes
 	Delay(2000);
 	// borramos el flag en extintpnd
-	rEXTINTPND = whicheint;
-	ic_cleanflag(INT_EINT4567); // CELIA: ??????????
+	ic_cleanflag(INT_EINT4567);
 				//COMPLETAR: debemos borrar las peticiones de interrupción en
 		         //EXTINTPND escribiendo un 1 en los flags que queremos borrar (los
 				 //correspondientes a los pulsadores pulsados)
+// CELIA: ????????????
 }
 
 void keyboard_ISR(void)
@@ -93,8 +89,6 @@ void keyboard_ISR(void)
 
 	if (key != -1) {
 		/* Visualizacion en el display */
-		//COMPLETAR: mostrar la tecla en el display utilizando el interfaz
-		//definido en D8Led.h
 		D8Led_digit(key);
 
 		switch (key) {
@@ -103,28 +97,24 @@ void keyboard_ISR(void)
 				tmr_set_divider(TIMER0, D1_8);
 				tmr_set_count(TIMER0, 62500, 1);
 				tmr_update(TIMER0);
-				//COMPLETAR: poner en timer0 divisor 1/8 y contador 62500
 				break;
 			case 1:
 				tmr_set_prescaler(TIMER0, 255);
 				tmr_set_divider(TIMER0, D1_8);
 				tmr_set_count(TIMER0, 31250, 1);
 				tmr_update(TIMER0);
-				//COMPLETAR: poner en timer0 timer divisor 1/8 y contador 31250
 				break;
 			case 2:
 				tmr_set_prescaler(TIMER0, 255);
 				tmr_set_divider(TIMER0, D1_8);
 				tmr_set_count(TIMER0, 15625, 1);
 				tmr_update(TIMER0);
-				//COMPLETAR: poner en timer0 timer divisor 1/8 y contador 15625
 				break;
 			case 3:
 				tmr_set_prescaler(TIMER0, 255);
 				tmr_set_divider(TIMER0, D1_4);
 				tmr_set_count(TIMER0, 15625, 1);
 				tmr_update(TIMER0);
-				//COMPLETAR: poner en timer0 timer divisor 1/4 y contador 15625
 				break;
 			default:
 				break;
@@ -132,15 +122,12 @@ void keyboard_ISR(void)
 		
 		/* Esperar a que la tecla se suelte, consultando el registro de datos */		
 		while (( rPDATG & (1 << 1)) != (1 << 1)) {};
-		/*COMPLETAR: true si está pulsada la tecla (leer del registro rPDATG)*/
 	}
 
     /* Eliminar rebotes de depresión */
     Delay(200);
      
     /* Borrar interrupciones pendientes */
-	//COMPLETAR
-	//borrar la interrupción por la línea EINT1 en el registro rI_ISPC
     ic_cleanflag(INT_EINT1);
 }
 
@@ -153,11 +140,6 @@ int setup(void)
 	/* Port G: configuración para generación de interrupciones externas,
 	 *         botones y teclado
 	 **/
-
-	//COMPLETAR: utilizando el interfaz para el puerto G definido en gpio.h
-	//configurar los pines 1, 6 y 7 del puerto G para poder generar interrupciones
-	//externas por flanco de bajada por ellos y activar las correspondientes
-	//resistencias de pull-up.
 
 	portG_conf(1, EINT);
 	portG_conf(6, EINT);
@@ -173,17 +155,20 @@ int setup(void)
 
 	/* Configuración del timer */
 
-	//COMPLETAR: tomar el código de la segunda parte
-	//CELIA: ???????
+	tmr_set_prescaler(TIMER0, 255);
+	tmr_set_divider(TIMER0, D1_8);
+	tmr_set_count(TIMER0, 62500, 1);
+	tmr_update(TIMER0);
 
 	if (RL.moving)
 		tmr_start(TIMER0);
+
 	/***************************/
 
 	// Registramos las ISRs
-	pISR_TIMER0   = (unsigned) timer_ISR; //COMPLETAR: registrar la RTI del timer
-	pISR_EINT4567 = (unsigned) button_ISR; //COMPLETAR: registrar la RTI de los botones
-	pISR_EINT1    = (unsigned) keyboard_ISR; //COMPLETAR: registrar la RTI del teclado
+	pISR_TIMER0   = timer_ISR;
+	pISR_EINT4567 = button_ISR;
+	pISR_EINT1    = keyboard_ISR;
 
 	/* Configuración del controlador de interrupciones
 	 * Habilitamos la línea IRQ, en modo vectorizado 
@@ -192,7 +177,7 @@ int setup(void)
 	 * Configuramos la línea EINT1 en modo IRQ y la habilitamos
 	 */
 	ic_init();
-	//COMPLETAR: utilizando el interfaz definido en intcontroller.h
+
 	ic_conf_irq(ENABLE, VEC); //		habilitar la línea IRQ en modo vectorizado
 	ic_conf_fiq(DISABLE); //		deshabilitar la línea FIQ
 	ic_conf_line(INT_TIMER0, IRQ); //		configurar la línea INT_TIMER0 en modo IRQ

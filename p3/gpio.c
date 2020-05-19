@@ -1,8 +1,6 @@
 #include "44b.h"
 #include "gpio.h"
 
-// FALTA ???
-
 /* Port B interface implementation */
 
 int portB_conf(int pin, enum port_mode mode)
@@ -12,7 +10,6 @@ int portB_conf(int pin, enum port_mode mode)
 		return -1;
 
 	if (mode == SIGOUT)
-		// COMPLETAR si es necesario ????????
 		rPCONB = rPCONB | (0x1 << pin);
 	else if (mode == OUTPUT)
 		rPCONB = rPCONB & ~(0x1 << pin);

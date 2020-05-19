@@ -3,8 +3,6 @@
  * Descrip:        funciones de control del timer0 del s3c44b0x
  *********************************************************************************************/
 
-//DONE
-
 /*--- ficheros de cabecera ---*/
 #include "44b.h"
 #include "timer.h"
@@ -17,9 +15,6 @@ int tmr_set_prescaler(int p, int  value)
     if (p < 0 || p > 3)
         return -1;
     
-    //COMPLETAR: escribir el valor value a partir de la posición offset en el
-    //registro rTCFG0, para establecer el valor de pre-escalado del módulo p
-    rTCFG0 = rTCFG0 & ~(0xFF << offset);//0's a partir de offset
     rTCFG0 = rTCFG0 | (value << offset);
     return 0;
 }
@@ -38,9 +33,6 @@ int tmr_set_divider(int d, enum tmr_div div)
     if (div == EXTCLK || div == TCLK)
         div = 4;
     
-    //COMPLETAR: escribir el valor div a partir de la posición pos en el
-    //registro rTCFG1 para establecer el valor para el divisor d
-    
     rTCFG1 = rTCFG1 & ~(0xFF << pos);//0's a partir de pos
     rTCFG1 = rTCFG1 | (div << pos);
     return 0;
@@ -51,43 +43,26 @@ int tmr_set_count(enum tmr_timer t, int count, int cmp)
     int err = 0;
     switch (t) {
         case TIMER0:
-            //COMPLETAR: establecer el valor de cuenta count y el valor de
-            //comparación cmp en los registros de buffer del timer0 (rTCNTB0 y
-            //rTCMPB0)
             rTCNTB0 = count;
             rTCMPB0 = cmp;
             break;
         case TIMER1:
-            //COMPLETAR: establecer el valor de cuenta count y el valor de
-            //comparación cmp en los registros de buffer del timer1 (rTCNTB1 y
-            //rTCMPB1)
             rTCNTB1 = count;
             rTCMPB1 = cmp;
             break;
         case TIMER2:
-            //COMPLETAR: establecer el valor de cuenta count y el valor de
-            //comparación cmp en los registros de buffer del timer2 (rTCNTB2 y
-            //rTCMPB2)
             rTCNTB2 = count;
             rTCMPB2 = cmp;
             break;
         case TIMER3:
-            //COMPLETAR: establecer el valor de cuenta count y el valor de
-            //comparación cmp en los registros de buffer del timer3 (rTCNTB3 y
-            //rTCMPB3)
             rTCNTB3 = count;
             rTCMPB3 = cmp;
             break;
         case TIMER4:
-            //COMPLETAR: establecer el valor de cuenta count y el valor de
-            //comparación cmp en los registros de buffer del timer4 (rTCNTB4 y
-            //rTCMPB4)
             rTCNTB4 = count;
             rTCMPB4 = cmp;
             break;
         case TIMER5:
-            //COMPLETAR: establecer el valor de cuenta count en el registro de
-            //buffer del timer5 (rTCNTB5)
             rTCNTB5 = count;
             break;
         default:
@@ -108,10 +83,7 @@ int tmr_update(enum tmr_timer t)
     
     rTCON = rTCON | (1 << pos +1); //el bit de actualizacion es el segundo de cada bloque
     rTCON = rTCON & ~(1 << pos +1);
-    //COMPLETAR: poner a 1 en el registro rTCON el bit indicado por pos
-    // y justo después ponerlo a 0 (deben ser stores distintos, lo hacemos con
-    // sentencias C distintas)
-    
+
     return 0;
 }
 
@@ -133,8 +105,7 @@ int tmr_set_mode(enum tmr_timer t, enum tmr_mode mode)
             rTCON = rTCON & ~(1 << pos +2); //el 5 no tiene inverter
         }
     }
-    //COMPLETAR: poner a 0 el bit autoreload a partir de la posición pos (es
-    //el cuarto bit a partir de esa posición)
+
     else if (mode == RELOAD) {
         if (t!= 5){
             rTCON = rTCON | (1 << pos +3);
@@ -143,8 +114,6 @@ int tmr_set_mode(enum tmr_timer t, enum tmr_mode mode)
             rTCON = rTCON | (1 << pos +2); //el 5 no tiene inverter
         }
     }
-    //COMPLETAR: poner a 1 el bit autoreload a partir de la posición pos (es
-    //el cuarto bit a partir de esa posición)
     else
         err = -1;
     
@@ -161,8 +130,7 @@ int tmr_start(enum tmr_timer t)
         return -1;
     
     rTCON = rTCON | (1 << pos);
-    //COMPLETAR: poner a 1 el bit de start a partir de la posición pos en el
-    //registro rTCON (es el primer bit del grupo)
+
     return 0;
 }
 
@@ -176,8 +144,7 @@ int tmr_stop(enum tmr_timer t)
         return -1;
     
     rTCON = rTCON & ~(1 << pos);
-    //COMPLETAR: poner a 0 el bit de start a partir de la posición pos en el
-    //registro rTCON (es el primer bit del grupo)
+
     return 0;
 }
 

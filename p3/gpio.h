@@ -1,8 +1,6 @@
 #ifndef GPIO_H_
 #define GPIO_H_
 
-// DONE
-
 enum digital {
 	LOW = 0,
 	HIGH = 1
